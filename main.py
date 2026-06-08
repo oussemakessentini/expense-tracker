@@ -10,6 +10,19 @@ from expense_manager import (
 
 load_expenses()
 
+def get_valid_amount():
+    while True:
+        try:
+            amount = float(input("Amount: "))
+
+            if amount <= 0:
+                print("Amount must be greater than 0.")
+            else:
+                return amount
+
+        except ValueError:
+            print("Please enter a valid number.")
+
 while True:
     print("\n===== Expense Tracker =====")
     print("1. Add Expense")
@@ -23,14 +36,10 @@ while True:
 
     if choice == "1":
         description = input("Description: ")
-        amount = float(input("Amount: "))
+        amount = get_valid_amount()
         category = input("Category: ")
-
-        if amount <= 0:
-            print("Amount must be greater than 0.")
-        else:
-            add_expense(description, amount, category)
-            print("Expense added successfully.")
+        add_expense(description, amount, category)
+        print("Expense added successfully.")
 
     elif choice == "2":
         view_expenses()
