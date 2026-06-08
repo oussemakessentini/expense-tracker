@@ -1,4 +1,11 @@
-from expense_manager import add_expense, view_expenses, total_expenses
+from expense_manager import (
+    add_expense,
+    view_expenses,
+    total_expenses,
+    load_expenses
+)
+
+load_expenses()
 
 
 while True:
