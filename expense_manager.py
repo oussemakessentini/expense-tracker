@@ -30,6 +30,29 @@ def save_expense(description, amount, category):
         writer.writerow([description, amount, category])
 
 
+def save_all_expenses():
+    with open("expenses.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+
+        for expense in expenses:
+            writer.writerow([
+                expense["description"],
+                expense["amount"],
+                expense["category"]
+            ])
+
+
+def delete_expense(index):
+    if index < 1 or index > len(expenses):
+        print("Invalid expense number.")
+        return
+
+    removed_expense = expenses.pop(index - 1)
+    save_all_expenses()
+
+    print(f"Deleted: {removed_expense['description']}")
+
+
 def add_expense(description, amount, category):
     expense = {
         "description": description,

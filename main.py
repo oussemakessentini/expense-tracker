@@ -3,7 +3,8 @@ from expense_manager import (
     view_expenses,
     total_expenses,
     load_expenses,
-    search_by_category
+    search_by_category,
+    delete_expense
 )
 
 
@@ -15,7 +16,8 @@ while True:
     print("2. View Expenses")
     print("3. Total Expenses")
     print("4. Search by Category")
-    print("5. Exit")
+    print("5. Delete Expense")
+    print("6. Exit")
 
     choice = input("Choose option: ")
 
@@ -41,8 +43,26 @@ while True:
         category = input("Enter category: ")
         search_by_category(category)
 
+
     elif choice == "5":
+
+        view_expenses()
+
+        try:
+
+            index = int(input("Enter expense number to delete: "))
+
+            delete_expense(index)
+
+        except ValueError:
+
+            print("Please enter a valid number.")
+
+
+    elif choice == "6":
+
         print("Goodbye!")
+
         break
 
     else:
