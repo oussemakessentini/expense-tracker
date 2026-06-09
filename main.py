@@ -4,7 +4,8 @@ from expense_manager import (
     total_expenses,
     load_expenses,
     search_by_category,
-    delete_expense
+    delete_expense,
+    summary_by_category
 )
 
 
@@ -30,7 +31,8 @@ while True:
     print("3. Total Expenses")
     print("4. Search by Category")
     print("5. Delete Expense")
-    print("6. Exit")
+    print("6. Summary by Category")
+    print("7. Exit")
 
     choice = input("Choose option: ")
 
@@ -68,7 +70,13 @@ while True:
             print("Please enter a valid number.")
 
 
+
     elif choice == "6":
+
+        summary_by_category()
+
+
+    elif choice == "7":
 
         print("Goodbye!")
 

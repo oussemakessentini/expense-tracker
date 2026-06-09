@@ -99,3 +99,24 @@ def search_by_category(category):
 
     if not found:
         print("No expenses found for this category.")
+
+
+def summary_by_category():
+    if len(expenses) == 0:
+        print("No expenses found.")
+        return
+
+    summary = {}
+
+    for expense in expenses:
+        category = expense["category"]
+        amount = expense["amount"]
+
+        if category in summary:
+            summary[category] += amount
+        else:
+            summary[category] = amount
+
+    print("\nSummary by Category:")
+    for category, total in summary.items():
+        print(f"{category}: ${total:.2f}")
