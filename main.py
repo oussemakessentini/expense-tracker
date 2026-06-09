@@ -5,7 +5,8 @@ from expense_manager import (
     load_expenses,
     search_by_category,
     delete_expense,
-    summary_by_category
+    summary_by_category,
+    monthly_report
 )
 
 
@@ -32,15 +33,17 @@ while True:
     print("4. Search by Category")
     print("5. Delete Expense")
     print("6. Summary by Category")
-    print("7. Exit")
+    print("7. Monthly Report")
+    print("8. Exit")
 
     choice = input("Choose option: ")
 
     if choice == "1":
+        date = input("Date (YYYY-MM-DD): ")
         description = input("Description: ")
         amount = get_valid_amount()
         category = input("Category: ")
-        add_expense(description, amount, category)
+        add_expense(description, amount, category, date)
         print("Expense added successfully.")
 
     elif choice == "2":
@@ -76,7 +79,15 @@ while True:
         summary_by_category()
 
 
+
     elif choice == "7":
+
+        month = input("Enter month (YYYY-MM): ")
+
+        monthly_report(month)
+
+
+    elif choice == "8":
 
         print("Goodbye!")
 

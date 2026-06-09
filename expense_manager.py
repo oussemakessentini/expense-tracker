@@ -9,13 +9,14 @@ def load_expenses():
             reader = csv.reader(file)
 
             for row in reader:
-                if len(row) < 3:
+                if len(row) < 4:
                     continue
 
                 expense = {
                     "description": row[0],
                     "amount": float(row[1]),
-                    "category": row[2]
+                    "category": row[2],
+                    "date": row[3]
                 }
 
                 expenses.append(expense)
@@ -24,10 +25,10 @@ def load_expenses():
         pass
 
 
-def save_expense(description, amount, category):
+def save_expense(description, amount, category, date):
     with open("expenses.csv", "a", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow([description, amount, category])
+        writer.writerow([description, amount, category, date])
 
 
 def save_all_expenses():
@@ -53,15 +54,16 @@ def delete_expense(index):
     print(f"Deleted: {removed_expense['description']}")
 
 
-def add_expense(description, amount, category):
+def add_expense(description, amount, category, date):
     expense = {
         "description": description,
         "amount": amount,
-        "category": category
+        "category": category,
+        "date": date
     }
 
     expenses.append(expense)
-    save_expense(description, amount, category)
+    save_expense(description, amount, category, date)
 
 
 def view_expenses():
@@ -120,3 +122,17 @@ def summary_by_category():
     print("\nSummary by Category:")
     for category, total in summary.items():
         print(f"{category}: ${total:.2f}")
+
+
+def monthly_report(month):
+    total = 0
+
+    for expense in expenses:
+        if expense["date"].startswith(month):
+            print(
+                f"{expense['date']} | {expense['description']} | "
+                f"${expense['amount']:.2f} | {expense['category']}"
+            )
+            total += expense["amount"]
+
+    print(f"\nMonthly Total: ${total:.2f}")
