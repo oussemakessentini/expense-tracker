@@ -9,6 +9,18 @@ from expense_manager import (
     monthly_report
 )
 
+from datetime import datetime
+
+def get_valid_date():
+    while True:
+        date_text = input("Date (YYYY-MM-DD): ")
+
+        try:
+            datetime.strptime(date_text, "%Y-%m-%d")
+            return date_text
+        except ValueError:
+            print("Invalid date format. Please use YYYY-MM-DD.")
+
 
 load_expenses()
 
@@ -39,7 +51,7 @@ while True:
     choice = input("Choose option: ")
 
     if choice == "1":
-        date = input("Date (YYYY-MM-DD): ")
+        date = get_valid_date()
         description = input("Description: ")
         amount = get_valid_amount()
         category = input("Category: ")
