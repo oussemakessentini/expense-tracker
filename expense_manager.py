@@ -136,3 +136,27 @@ def monthly_report(month):
             total += expense["amount"]
 
     print(f"\nMonthly Total: ${total:.2f}")
+
+
+def export_monthly_report(month):
+    report_file = f"monthly_report_{month}.csv"
+    total = 0
+
+    with open(report_file, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["Date", "Description", "Amount", "Category"])
+
+        for expense in expenses:
+            if expense["date"].startswith(month):
+                writer.writerow([
+                    expense["date"],
+                    expense["description"],
+                    expense["amount"],
+                    expense["category"]
+                ])
+                total += expense["amount"]
+
+        writer.writerow([])
+        writer.writerow(["Total", "", total, ""])
+
+    print(f"Report exported successfully: {report_file}")

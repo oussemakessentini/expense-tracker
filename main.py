@@ -6,7 +6,8 @@ from expense_manager import (
     search_by_category,
     delete_expense,
     summary_by_category,
-    monthly_report
+    monthly_report,
+    export_monthly_report
 )
 
 from datetime import datetime
@@ -46,7 +47,8 @@ while True:
     print("5. Delete Expense")
     print("6. Summary by Category")
     print("7. Monthly Report")
-    print("8. Exit")
+    print("8. Export Monthly Report")
+    print("9. Exit")
 
     choice = input("Choose option: ")
 
@@ -99,7 +101,15 @@ while True:
         monthly_report(month)
 
 
+
     elif choice == "8":
+
+        month = input("Enter month (YYYY-MM): ")
+
+        export_monthly_report(month)
+
+
+    elif choice == "9":
 
         print("Goodbye!")
 
